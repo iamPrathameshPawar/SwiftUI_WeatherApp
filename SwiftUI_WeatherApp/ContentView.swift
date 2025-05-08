@@ -26,11 +26,19 @@ struct WeatherTabView: View {
 
 struct WeatherContentView: View {
     
+    let originalCity: String
+    
     @State var city: String
 
     @StateObject var viewModel = WeatherViewModel()
     @State private var isNight = false
     @State private var isEditingCity = false
+    
+    init(city: String) {
+        self.originalCity = city
+        _city = State(initialValue: city)
+    }
+    
     
     var body: some View {
         
@@ -91,6 +99,7 @@ struct WeatherContentView: View {
             }
         }
         .onAppear {
+            city = originalCity
             viewModel.fetchWeather(for: city)
         }
         
