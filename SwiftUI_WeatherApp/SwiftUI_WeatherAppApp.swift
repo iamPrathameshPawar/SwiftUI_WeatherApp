@@ -9,6 +9,11 @@ import SwiftUI
 
 @main
 struct SwiftUI_WeatherAppApp: App {
+    
+    init() {
+          UITabBar.appearance().unselectedItemTintColor = UIColor.darkGray
+    }
+    
     var body: some Scene {
         WindowGroup {
             WeatherTabView()
