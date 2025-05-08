@@ -39,7 +39,6 @@ struct WeatherContentView: View {
         _city = State(initialValue: city)
     }
     
-    
     var body: some View {
         
         ZStack {
