@@ -7,12 +7,30 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherTabView: View {
     
+    let defaultCities = ["New Delhi", "Mumbai", "Pune", "Baramati", "Bangalore"]
+    
+    var body: some View {
+        TabView {
+            ForEach(defaultCities, id: \.self) { city in
+                WeatherContentView(city: city)
+                    .tabItem {
+                        Label(city, systemImage: "location.circle")
+                    }
+            }
+        }
+    }
+}
+
+
+struct WeatherContentView: View {
+    
+    @State var city: String
+
     @StateObject var viewModel = WeatherViewModel()
     @State private var isNight = false
     @State private var isEditingCity = false
-    @State private var city: String = "Cupertino, CA"
     
     var body: some View {
         
@@ -80,7 +98,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    WeatherTabView()
 }
 
 struct WeatherDayView: View {
